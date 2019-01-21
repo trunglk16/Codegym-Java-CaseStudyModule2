@@ -3,37 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-<a th:href="@{/}">Back to index</a>
-<form th:action="@{/edit-note}" th:object="${note}" method="post">
-    <input th:type="hidden" name="id" th:text="${note.id}">
-    <table>
-        <tr>
-            <td>Tiêu đề:</td>
-            <td><input type="text" th:field="*{title}"/></td>
-        </tr>
-        <tr>
-            <td>Thể loại:</td>
-            <td>
-                <select name="type">
-                    <option th:each="t : ${type}"
-                            th:value="${t.id}"
-                            th:text="${t.name}"
-                            th:selected="(${t.id} == *{type.id})"></option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Nội dung:</td>
-            <td><input type="text" th:field="*{content}"/></td>
-        </tr>
+<header id="header-id">
+    <h1 style="position: relative">CASE STUDY</h1>
+</header>
+<div class="body">
+    <div class="main">
 
-        <tr>
 
-            <td><input type="submit" value="Update note"></td>
-        </tr>
-    </table>
-</form>
+        <a th:href="@{/}">Back to index</a>
+        <form th:action="@{/edit-note}" th:object="${note}" method="post">
+            <input th:type="hidden" name="id" th:field="*{id}">
+
+            <table>
+                <tr>
+                    <td>Tiêu đề:</td>
+                    <td><input type="text" th:field="*{title}"/></td>
+                </tr>
+                <tr>
+                    <td>Thể loại:</td>
+                    <td>
+                        <select name="type">
+                            <option th:each="t : ${type}"
+                                    th:value="${t.id}"
+                                    th:text="${t.name}"
+                                    th:selected="(${t.id} == *{type.id})"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nội dung:</td>
+                    <td><input type="text" th:field="*{content}"/></td>
+                </tr>
+
+                <tr>
+
+                    <td><input type="submit" value="Update note"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+        <footer id="footer-id">
+            <div class="contact">
+                <a href="https://www.facebook.com/trungnguyenlk16" class="fa fa-facebook contact-box"></a>
+                <a href="https://github.com/trunglk16" class="fa fa-github contact-box"></a>
+                <a href="https://plus.google.com/+TrungNguy%E1%BB%85nLk16" class="fa fa-google-plus contact-box"></a>
+                <a href="https://www.linkedin.com/in/trung-nguyen-50533b163/" class="fa fa-linkedin contact-box"></a>
+            </div>
+            <p>Project by &copy;<a href="">TrungNT</a></p>
+        </footer>
+
 </body>
 </html>

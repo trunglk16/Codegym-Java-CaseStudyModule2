@@ -8,27 +8,22 @@
 
 </head>
 <body>
-<body>
 <header id="header-id">
     <h1 style="position: relative">CASE STUDY</h1>
 </header>
 <div class="body">
     <div class="main">
+
         <a th:href="@{/}">Back to index</a>
-        <form th:href="@{/delete-note/{id}}" method="post">
+        <form>
 
             <input th:type="hidden" name="id" th:field="*{id}">
             <h4>Tên:</h4>
             <p th:text="${note.title}"></p>
-            <br>
             <h4>Tiêu đề</h4>
-            <br>
             <p th:text="${note.Type.name}"></p>
-            <br>
             <h4>Nội dung</h4>
             <p th:text="${note.content}"></p>
-            <br>
-            <input type="submit" value="Xóa">
 
         </form>
     </div>

@@ -18,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 
 public class TypeController {
-    @Autowired
-    private NoteService noteService;
 
     @Autowired
     private TypeService typeService;
@@ -68,12 +66,16 @@ public class TypeController {
     }
 
     @PostMapping("/edit-type")
-    public ModelAndView updateType(@ModelAttribute("type") Type type) {
-        typeService.save(type);
+    public ModelAndView updateType(@ModelAttribute("type") Type type, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("/type/view");
-        modelAndView.addObject("type", type);
-        modelAndView.addObject("message", "Type update successful");
-        return modelAndView;
+        if (!bindingResult.hasFieldErrors()) {
+            typeService.save(type);
+            modelAndView.addObject("type", type);
+            modelAndView.addObject("message", "Update successful");
+            return modelAndView;
+        }else {
+            return modelAndView;
+        }
     }
 
     @GetMapping("/delete-type/{id}")
@@ -100,17 +102,19 @@ public class TypeController {
             return "redirect:/error404";
         }
     }
-//    @PostMapping("/delete-note/{id}")
-//    public String delete(@PathVariable Integer id) {
-//        Note note = noteService.findById(id);
-//        if (note != null) {
-//            noteService.remove(note.getId());
-//            return "redirect:/";
-//        } else {
-//            return "redirect:/error404";
-//        }
-//    }
 
+    @GetMapping("/view-type/{id}")
+    public ModelAndView details(@PathVariable Integer id) {
+        Type type = typeService.findByid(id);
+        if (type != null) {
+            ModelAndView modelAndView = new ModelAndView("/type/view");
+            modelAndView.addObject("type", type);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/error.404");
+            return modelAndView;
+        }
+    }
 
 
 }

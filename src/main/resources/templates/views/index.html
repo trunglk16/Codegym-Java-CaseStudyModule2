@@ -3,43 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-<a th:href="@{/create-note}">Create note</a>
-<a th:href="@{/types}">List type</a>
 
-<form>
-    Tìm kiếm:
-    <input name="s" type="text" placeholder="Bạn muốn tìm kiếm thứ gì?"/>
-    <input type="submit" value="Search"/>
-</form><br/>
-<th:block th:if=${message}>
-    <p th:text="${message}"></p>
-</th:block>
-<div>
-    <a th:href="@{'/'(page=${note.number - 1})}" th:if="${note.hasPrevious()}">Previous</a>
-    <span th:text="${note.number + 1}"></span>/<span th:text="${note.totalPages}"></span>
-    <a th:href="@{'/'(page=${note.number + 1})}" th:if="${note.hasNext()}">Next</a>
+
+<header id="header-id">
+    <h1 style="position: relative">CASE STUDY</h1>
+</header>
+<div class = "body">
+    <div class="main" >
+        <a th:href="@{/create-note}">Create note</a>
+        <a th:href="@{/types}">List type</a>
+
+        <form>
+            Tìm kiếm:
+            <input name="s" type="text" placeholder="Bạn muốn tìm kiếm thứ gì?"/>
+            <input type="submit" value="Search"/>
+        </form>
+        <br/>
+        <th:block th:if=${message}>
+            <p th:text="${message}"></p>
+        </th:block>
+        <div>
+            <a th:href="@{'/'(page=${note.number - 1})}" th:if="${note.hasPrevious()}">Previous</a>
+            <span th:text="${note.number + 1}"></span>/<span th:text="${note.totalPages}"></span>
+            <a th:href="@{'/'(page=${note.number + 1})}" th:if="${note.hasNext()}">Next</a>
+        </div>
+        <table class="table" border="1">
+            <tr>
+                <th>STT</th>
+                <th>Tiêu đề</th>
+                <th>Thể loại</th>
+                <th>Sửa/Xóa</th>
+            </tr>
+            <th:block th:each="n:${note}">
+                <tr>
+                    <td th:id></td>
+                    <td><a th:href="@{/view-note/__${n.id}__}" th:text="${n.title}"></a></td>
+                    <td th:text="${n.Type.Name}"></td>
+                    <td><a th:href="@{/edit-note/__${n.id}__}">Edit</a>/<a th:href="@{/delete-note/__${n.id}__}"
+                                                                           onclick=" return confirm('Bạn có thực sự muỗn xóa?');">Delete</a>
+                    </td>
+
+                </tr>
+            </th:block>
+
+        </table>
+    </div>
+    <footer id="footer-id">
+        <div class="contact">
+            <a href="https://www.facebook.com/trungnguyenlk16" class="fa fa-facebook contact-box"></a>
+            <a href="https://github.com/trunglk16" class="fa fa-github contact-box"></a>
+            <a href="https://plus.google.com/+TrungNguy%E1%BB%85nLk16" class="fa fa-google-plus contact-box"></a>
+            <a href="https://www.linkedin.com/in/trung-nguyen-50533b163/" class="fa fa-linkedin contact-box"></a>
+        </div>
+        <p>Project by &copy;<a href="">TrungNT</a></p>
+    </footer>
 </div>
-<table border="1">
-    <tr>
-        <th>STT</th>
-        <th>Thể loại</th>
-        <th>Tiêu đề</th>
-        <th>Nội dung</th>
-        <th>Sửa/Xóa</th>
-    </tr>
-    <th:block th:each="n:${note}">
-        <tr>
-            <td th:id></td>
-            <td><a th:href="@{/view-note/__${n.id}__}" th:text="${n.title}"></a></td>
-            <td th:text="${n.Type.Name}"></td>
-            <td th:text="${n.content}"></td>
-            <td><a th:href="@{/edit-note/__${n.id}__}">Edit</a>/<a th:href="@{/delete-note/__${n.id}__}" onclick=" return confirm('Bạn có thực sự muỗn xóa?');">Delete</a></td>
-
-        </tr>
-    </th:block>
-
-</table>
 </body>
 </html>

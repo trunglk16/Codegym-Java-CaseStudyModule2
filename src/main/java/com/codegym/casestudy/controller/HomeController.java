@@ -25,7 +25,7 @@ public class HomeController {
     public ModelAndView list(@RequestParam("s") Optional<String> s, Pageable pageable) {
         Page<Note> note ;
         if (s.isPresent()) {
-            note = noteService.findAllByTitleContainingOrContentContaining(s.get(),s.get(), pageable);
+            note = noteService.findAllByTitleContainingOrContentContaining(s.get(),s.get(),new PageRequest(pageable.getPageNumber(),5));
         }else {
             note = printPage(pageable);
         }

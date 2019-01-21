@@ -76,11 +76,12 @@ public class NoteController {
             return modelAndView;
         }
     }
+
     @GetMapping("/view-note/{id}")
     public ModelAndView details(@PathVariable Integer id) {
         Note note = noteService.findById(id);
         if (note != null) {
-            ModelAndView modelAndView = new ModelAndView("/views/delete");
+            ModelAndView modelAndView = new ModelAndView("/views/view");
             modelAndView.addObject("note", note);
             return modelAndView;
         } else {

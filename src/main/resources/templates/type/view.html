@@ -14,31 +14,17 @@
 <div class="body">
     <div class="main">
 
-        <a th:href="@{/}">Back to index</a>
-        <a th:href="@{/create-type}">Create type</a>
-        <th:block th:if=${message}>
-            <p th:text="${message}"></p>
-        </th:block>
-        <table class="table" border="1">
-            <tr>
-                <th>STT</th>
-                <th>Tên</th>
-                <th>Mô tả</th>
-                <th>Sửa/Xóa</th>
-            </tr>
-            <th:block th:each="t:${type}">
-                <tr>
-                    <td th:id></td>
-                    <td><a th:href="@{/view-type/__${t.id}__}" th:text="${t.name}"></a></td>
-                    <td th:text="${t.description}"></td>
-                    <td>
-                        <a th:href="@{/edit-type/__${t.id}__}">Sửa</a>/<a th:href="@{/delete-type/__${t.id}__}">Xóa</a>
-                    </td>
+        <a th:href="@{/types}">Back to list</a>
+        <form>
+            <!--<input th:type="hidden" name="id" th:field="*{id}">-->
+            <h4>Tên:</h4>
+            <p th:text="${type.name}"></p>
 
-                </tr>
-            </th:block>
+            <h4>Mô tả:</h4>
+            <p th:text="${type.description}"></p>
 
-        </table>
+
+        </form>
     </div>
 
     <footer id="footer-id">
@@ -52,5 +38,6 @@
     </footer>
 
 </body>
+
 </body>
 </html>
