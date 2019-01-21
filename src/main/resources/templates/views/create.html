@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-Create
+<a th:href="@{/}">Back to index</a>
+<form th:action="@{/create-note}" th:object="${note}" method="post">
+<table>
+    <tr>
+        <td>Title:</td>
+        <td><input type="text" th:field="*{title}"/></td>
+        <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></td>
+    </tr>
+    <tr>
+        <td>Content:</td>
+        <td><textarea type="text" th:field="*{content}"/></td>
+        <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Create customer"></td>
+    </tr>
+</table>
 </body>
 </html>

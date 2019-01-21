@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-View
+<a th:href="@{/}">Back to index</a>
+<form>
+    <p th:type="hidden" name="id" th:field="*{id}">
+    <p th:text="${note.title}"></p>
+    <br>
+    <p th:text="${note.content}"></p>
+    <br>
+
+</form>
 
 </body>
 </html>

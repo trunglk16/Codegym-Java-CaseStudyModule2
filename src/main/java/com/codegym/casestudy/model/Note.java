@@ -1,6 +1,7 @@
 package com.codegym.casestudy.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Note")
@@ -9,11 +10,14 @@ public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotEmpty(message = "Tiêu đề không được để trống")
     private String title;
+
+    @NotEmpty(message = "Nội dung không được để trống")
     private String content;
 
-    public Note(int id, String title, String content) {
-        this.id = id;
+    public Note(@NotEmpty(message = "Tiêu đề không được để trống") String title, @NotEmpty(message = "Nội dung không được để trống") String content) {
         this.title = title;
         this.content = content;
     }

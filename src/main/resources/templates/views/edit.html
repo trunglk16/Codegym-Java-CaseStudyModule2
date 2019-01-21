@@ -1,10 +1,28 @@
-<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-Edit
+<a th:href="@{/}">Back to index</a>
+<form th:action="@{/edit-note}" th:object="${note}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Tiêu đề:</td>
+            <td><input type="text" th:field="*{title}"/></td>
+        </tr>
+        <tr>
+            <td>Nội dung:</td>
+            <td><input type="text" th:field="*{content}"/></td>
+        </tr>
+
+        <tr>
+
+            <td><input type="submit" value="Update note"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

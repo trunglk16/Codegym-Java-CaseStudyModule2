@@ -5,9 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{/create-note}">Create note</a>
 <th:block th:if=${message}>
     <p th:text="${message}"></p>
 </th:block>
+<div>
+    <a th:href="@{'/'(page=${note.number - 1})}" th:if="${note.hasPrevious()}">Previous</a>
+    <span th:text="${note.number + 1}"></span>/<span th:text="${note.totalPages}"></span>
+    <a th:href="@{'/'(page=${note.number + 1})}" th:if="${note.hasNext()}">Next</a>
+</div>
 <table border="1">
     <tr>
         <th>STT</th>
@@ -18,14 +24,15 @@
     <th:block th:each="n:${note}">
         <tr>
             <td th:id></td>
-            <td th:text="${n.title}"></td>
+            <td><a th:href="@{/view-note/__${n.id}__}" th:text="${n.title}"></a></td>
             <td th:text="${n.content}"></td>
             <td>
-                <a th:href="@{/edit/__${n.id}__}">Edit</a>/<a th:href="@{/delete/__${n.id}__}">Delete</a>
+                <a th:href="@{/edit-note/__${n.id}__}">Edit</a>/<a th:href="@{/delete-note/__${n.id}__}">Delete</a>
             </td>
 
         </tr>
     </th:block>
+
 </table>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.codegym.casestudy;
 //
+
 import com.codegym.casestudy.service.NoteService;
 import com.codegym.casestudy.service.impl.NoteServiceImpl;
 import org.springframework.boot.SpringApplication;
@@ -12,9 +13,10 @@ public class CasestudyApplication {
     public static void main(String[] args) {
         SpringApplication.run(CasestudyApplication.class, args);
     }
-@Bean
-    public NoteService noteService() {
-    return new NoteServiceImpl();
-}
+
+//    @Bean
+//    public NoteService noteService() {
+//        return new NoteServiceImpl();
+//    }
 }
 
