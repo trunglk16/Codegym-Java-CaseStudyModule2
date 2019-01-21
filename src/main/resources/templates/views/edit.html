@@ -7,11 +7,22 @@
 <body>
 <a th:href="@{/}">Back to index</a>
 <form th:action="@{/edit-note}" th:object="${note}" method="post">
-    <input th:type="hidden" name="id" th:field="*{id}">
+    <input th:type="hidden" name="id" th:text="${note.id}">
     <table>
         <tr>
             <td>Tiêu đề:</td>
             <td><input type="text" th:field="*{title}"/></td>
+        </tr>
+        <tr>
+            <td>Thể loại:</td>
+            <td>
+                <select name="type">
+                    <option th:each="t : ${type}"
+                            th:value="${t.id}"
+                            th:text="${t.name}"
+                            th:selected="(${t.id} == *{type.id})"></option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>Nội dung:</td>

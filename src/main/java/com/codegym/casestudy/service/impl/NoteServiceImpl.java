@@ -37,4 +37,9 @@ public class NoteServiceImpl implements NoteService {
     public void remove(int id) {
         noteRepository.deleteById(id);
     }
+
+    @Override
+    public Page<Note> findAllByTitleContainingOrContentContaining(String string,String text, Pageable pageable) {
+        return noteRepository.findAllByTitleContainingOrContentContaining(string,text,pageable);
+    }
 }

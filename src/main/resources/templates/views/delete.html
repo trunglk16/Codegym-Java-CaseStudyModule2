@@ -6,14 +6,20 @@
 </head>
 <body>
 <a th:href="@{/}">Back to index</a>
-<form method="post" >
+<form th:href="@{/delete-note/{id}}" method="post" >
 
-    <p th:type="hidden" name="id" th:field="*{id}">
+    <p th:type="hidden" name="id" th:text="${note.id}">
+    <h4>Tên:</h4>
     <p th:text="${note.title}"></p>
     <br>
+    <h4>Tiêu đề</h4>
+    <br>
+    <p th:text="${note.Type.name}"></p>
+    <br>
+    <h4>Nội dung</h4>
     <p th:text="${note.content}"></p>
     <br>
-    <a th:href="@{/delete-note/__${note.id}__}">Delete</a>
+    <input type="submit" value="Delete">
 
 </form>
 

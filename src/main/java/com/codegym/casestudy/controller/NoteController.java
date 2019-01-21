@@ -44,12 +44,16 @@ public class NoteController {
     }
 
     @PostMapping("/edit-note")
-    public ModelAndView updateModel(@ModelAttribute("note") Note note) {
-        noteService.save(note);
-        ModelAndView modelAndView = new ModelAndView("/views/index");
-        modelAndView.addObject("note", note);
-        modelAndView.addObject("message", "Update successful");
-        return modelAndView;
+    public ModelAndView updateNote(@Validated @ModelAttribute("note") Note note, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView("/views/view");
+        if (!bindingResult.hasFieldErrors()) {
+            noteService.save(note);
+            modelAndView.addObject("note", note);
+            modelAndView.addObject("message", "Update successful");
+            return modelAndView;
+        }else {
+            return modelAndView;
+        }
     }
 
 
@@ -72,7 +76,7 @@ public class NoteController {
             return modelAndView;
         }
     }
-    @GetMapping("/delete-note/{id}")
+    @GetMapping("/view-note/{id}")
     public ModelAndView details(@PathVariable Integer id) {
         Note note = noteService.findById(id);
         if (note != null) {
@@ -85,10 +89,9 @@ public class NoteController {
         }
     }
 
-    @PostMapping("/delete-note/{id}")
+    @GetMapping("/delete-note/{id}")
     public String delete(@PathVariable Integer id) {
         Note note = noteService.findById(id);
-        ModelAndView modelAndView;
         if (note != null) {
             noteService.remove(note.getId());
             return "redirect:/";

@@ -41,9 +41,10 @@ public class TypeController {
 
     @PostMapping("/create-type")
     public ModelAndView save(@Validated @ModelAttribute("type") Type type, BindingResult bindingResult) {
-        typeService.save(type);
+
         ModelAndView modelAndView = new ModelAndView("/type/create");
         if (!bindingResult.hasFieldErrors()) {
+            typeService.save(type);
             modelAndView.addObject("type", new Type());
             modelAndView.addObject("message", "New type create successful");
             return modelAndView;
@@ -51,6 +52,7 @@ public class TypeController {
             return modelAndView;
         }
     }
+
 
     @GetMapping("/edit-type/{id}")
     public ModelAndView showType(@PathVariable int id) {
@@ -65,11 +67,10 @@ public class TypeController {
         }
     }
 
-    @PostMapping("/edit-type/{id}")
+    @PostMapping("/edit-type")
     public ModelAndView updateType(@ModelAttribute("type") Type type) {
         typeService.save(type);
-
-        ModelAndView modelAndView = new ModelAndView("/type/list");
+        ModelAndView modelAndView = new ModelAndView("/type/view");
         modelAndView.addObject("type", type);
         modelAndView.addObject("message", "Type update successful");
         return modelAndView;
@@ -89,9 +90,9 @@ public class TypeController {
     }
 
     @PostMapping("/delete-type/{id}")
-    public String delete(@PathVariable int id) {
+    public String delete(@PathVariable Integer id) {
         Type type = typeService.findByid(id);
-        ModelAndView modelAndView;
+
         if (type != null) {
             typeService.remove(type.getId());
             return "redirect:/types";
@@ -99,5 +100,17 @@ public class TypeController {
             return "redirect:/error404";
         }
     }
+//    @PostMapping("/delete-note/{id}")
+//    public String delete(@PathVariable Integer id) {
+//        Note note = noteService.findById(id);
+//        if (note != null) {
+//            noteService.remove(note.getId());
+//            return "redirect:/";
+//        } else {
+//            return "redirect:/error404";
+//        }
+//    }
+
+
 
 }
