@@ -1,8 +1,10 @@
 package com.codegym.casestudy.controller;
 
 import com.codegym.casestudy.model.Note;
+import com.codegym.casestudy.model.Type;
 import com.codegym.casestudy.service.NoteService;
 
+import com.codegym.casestudy.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -21,19 +23,12 @@ public class NoteController {
     @Autowired
     private NoteService noteService;
 
+    @Autowired
+    private TypeService typeService;
 
-    @GetMapping("/view-note/{id}")
-    public ModelAndView details(@PathVariable Integer id) {
-        Note note = noteService.findById(id);
-        if (note != null) {
-            ModelAndView modelAndView = new ModelAndView("/views/view");
-            modelAndView.addObject("note", note);
-            return modelAndView;
-        } else {
-            ModelAndView modelAndView = new ModelAndView("/error.404");
-            return modelAndView;
-        }
-    }
+    @ModelAttribute("type")
+    private Iterable<Type> type() {
+        return typeService.findAll();}
 
     @GetMapping("/edit-note/{id}")
     public ModelAndView edit(@PathVariable Integer id) {
@@ -77,8 +72,20 @@ public class NoteController {
             return modelAndView;
         }
     }
-
     @GetMapping("/delete-note/{id}")
+    public ModelAndView details(@PathVariable Integer id) {
+        Note note = noteService.findById(id);
+        if (note != null) {
+            ModelAndView modelAndView = new ModelAndView("/views/delete");
+            modelAndView.addObject("note", note);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/error.404");
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("/delete-note/{id}")
     public String delete(@PathVariable Integer id) {
         Note note = noteService.findById(id);
         ModelAndView modelAndView;

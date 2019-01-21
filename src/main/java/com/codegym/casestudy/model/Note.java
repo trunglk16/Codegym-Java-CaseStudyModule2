@@ -50,7 +50,7 @@ public class Note {
     }
 
     @ManyToOne
-    @JoinColumn(name = "Note type")
+    @JoinColumn(name = "Type_id")
     private Type type;
 
     public Type getType() {

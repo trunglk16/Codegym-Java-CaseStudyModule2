@@ -4,7 +4,9 @@ import com.codegym.casestudy.model.Type;
 import com.codegym.casestudy.repository.TypeRepository;
 import com.codegym.casestudy.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TypeServiceImpl implements TypeService {
     @Autowired
     private TypeRepository typeRepository;
@@ -15,7 +17,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public Type findByid(Integer id) {
+    public Type findByid(int id) {
         return typeRepository.findById(id).get();
     }
 
@@ -25,7 +27,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public void remove(Integer id) {
+    public void remove(int id) {
         typeRepository.deleteById(id);
     }
 }

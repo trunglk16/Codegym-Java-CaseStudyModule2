@@ -34,7 +34,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public void remove(Integer id) {
+    public void remove(int id) {
         noteRepository.deleteById(id);
     }
 }

@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/types}">Back to list</a>
+<form th:action="@{/edit-type}" th:object="${type}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Tên:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Mô tả:</td>
+            <td><input type="text" th:field="*{description}"/></td>
+        </tr>
+
+        <tr>
+
+            <td><input type="submit" value="Update type"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

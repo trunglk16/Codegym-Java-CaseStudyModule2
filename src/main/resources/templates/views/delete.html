@@ -6,14 +6,17 @@
 </head>
 <body>
 <a th:href="@{/}">Back to index</a>
-<form>
+<form method="post" >
+
     <p th:type="hidden" name="id" th:field="*{id}">
     <p th:text="${note.title}"></p>
     <br>
     <p th:text="${note.content}"></p>
     <br>
+    <a th:href="@{/delete-note/__${note.id}__}">Delete</a>
 
 </form>
+
 
 </body>
 </html>

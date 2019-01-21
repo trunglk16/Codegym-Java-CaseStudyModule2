@@ -50,7 +50,7 @@ public class Type {
         this.description = description;
     }
 
-    @OneToMany
+    @OneToMany(targetEntity = Note.class)
     private List<Note> note;
 
     public List<Note> getNote() {

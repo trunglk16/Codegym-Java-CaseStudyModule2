@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/types}">Back to list</a>
+<form method="post" >
+
+    <p th:type="hidden" name="id" th:field="*{id}">
+    <h4>Tên:</h4>
+    <p th:text="${type.name}"></p>
+    <br>
+    <h4>Mô tả:</h4>
+    <p th:text="${type.description}"></p>
+    <br>
+    <a th:href="@{/delete-type/__${type.id}__}">Delete</a>
+
+</form>
+
+
+</body>
+</html>

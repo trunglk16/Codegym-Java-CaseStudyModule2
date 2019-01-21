@@ -5,9 +5,9 @@ import com.codegym.casestudy.model.Type;
 public interface TypeService {
     Iterable<Type> findAll();
 
-    Type findByid(Integer id);
+    Type findByid(int id);
 
     void save(Type type);
 
-    void remove(Integer id);
+    void remove(int id);
 }

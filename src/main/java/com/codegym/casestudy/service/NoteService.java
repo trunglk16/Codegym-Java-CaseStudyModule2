@@ -11,7 +11,7 @@ public interface NoteService {
     Page<Note> findAll(Pageable pageable);
     Note findById(int id) ;
 
-    void remove(Integer id);
+    void remove(int id);
 
     void save(Note note);
 }
