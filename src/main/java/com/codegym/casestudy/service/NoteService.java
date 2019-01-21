@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface NoteService {
 
     Page<Note> findAll(Pageable pageable);
-    public Optional<Note> findById(int id) ;
+    Note findById(int id) ;
 
     void remove(Integer id);
 

@@ -23,8 +23,8 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public Optional<Note> findById(int id) {
-        return noteRepository.findById(id);
+   public Note findById(int id) {
+        return noteRepository.findById(id).get();
     }
 
     @Override
